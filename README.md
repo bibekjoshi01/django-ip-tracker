@@ -1,4 +1,4 @@
-# Django Application
+# Django IP Tracker
 
 This is a Django application that allows you to retrieve details about an IP address using an IP geolocation service.
 
@@ -52,7 +52,7 @@ Contributions are welcome! If you find any issues or have suggestions for improv
 This project is licensed under the [MIT License](LICENSE).
 
 
-## DEVELOPED_BY:
+## Developer:
 - Bibek Joshi
 
 
