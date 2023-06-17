@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IP Tracker</title>
+    <style>
+      body {
+        background-color: #1e293b;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 2rem;
+        font-family: "Courier New", Courier, monospace;
+      }
+
+      h1 {
+        font-size: 40px;
+        color: #fff;
+        font-family: "Courier New", Courier, monospace;
+      }
+
+      form {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      input {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #fff;
+        width: 300px;
+        background-color: transparent;
+        color: #fff;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 16px;
+        font-weight: 500;
+      }
+
+      .buttons button {
+        padding: 10px 20px;
+        background-color: #049d06;
+        color: #fff;
+        border: none;
+        font-weight: bold;
+        font-family: "Courier New", Courier, monospace;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .buttons button:hover {
+        background-color: #036b03;
+      }
+
+      .buttons button:active {
+        background-color: #02a602;
+      }
+
+      .display {
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #f2f2f2;
+        border-radius: 5px;
+        width: 100%;
+        max-width: 400px;
+        text-align: left;
+      }
+
+      .display table {
+        margin: 0 auto;
+        /* Align table at the center */
+      }
+
+      .display th,
+      .display td {
+        padding: 5px 20px;
+        /* Add gap between th and td */
+      }
+
+      .error {
+        margin: 0 auto;
+        color: red;
+      }
+
+      /* Responsive adjustments */
+      @media only screen and (max-width: 600px) {
+        h1 {
+          font-size: 32px;
+        }
+
+        input {
+          width: 100%;
+        }
+
+        .display {
+          max-width: 100%;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Track Your IP Address</h1>
+      <form action="" method="POST">
+        {% csrf_token %}
+        <div class="input-box">
+          <input
+            placeholder="Enter an IP address"
+            name="ip_address"
+            type="text"
+            value="{{ ip_details.IP }}"
+            required
+          />
+        </div>
+        <div class="buttons">
+          <button type="submit">Get Details</button>
+        </div>
+      </form>
+      <div class="display">
+        {% if error_message %}
+        <p class="error">{{ error_message }}</p>
+        {% else %}
+        <table>
+          <tr>
+            <th>IP:</th>
+            <td>{{ ip_details.IP }}</td>
+          </tr>
+          <tr>
+            <th>City:</th>
+            <td>{{ ip_details.City }}</td>
+          </tr>
+          <tr>
+            <th>Region:</th>
+            <td>{{ ip_details.Region }}</td>
+          </tr>
+          <tr>
+            <th>Country Code:</th>
+            <td>{{ ip_details.Country_Code }}</td>
+          </tr>
+          <tr>
+            <th>Country:</th>
+            <td>{{ ip_details.Country }}</td>
+          </tr>
+          <tr>
+            <th>Location:</th>
+            <td>{{ ip_details.Location }}</td>
+          </tr>
+          <tr>
+            <th>Organization:</th>
+            <td>{{ ip_details.Organization }}</td>
+          </tr>
+          <tr>
+            <th>Timezone:</th>
+            <td>{{ ip_details.Timezone }}</td>
+          </tr>
+          <tr>
+            <th>ASN:</th>
+            <td>{{ ip_details.ASN }}</td>
+          </tr>
+          <tr>
+            <th>Company Name:</th>
+            <td>{{ ip_details.Company_Name }}</td>
+          </tr>
+          <tr>
+            <th>Privacy VPN:</th>
+            <td>{{ ip_details.Privacy_VPN }}</td>
+          </tr>
+          <tr>
+            <th>Abuse Email:</th>
+            <td>{{ ip_details.Abuse_Email }}</td>
+          </tr>
+        </table>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>
